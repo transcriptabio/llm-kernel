@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-kernel"
+version = "0.1.0"
+description = "A framework for LLM-based pairwise similarity scoring across different data types"
+authors = [
+    {name = "Will Connell", email = "will@transcriptabio.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "dspy",
+    "pydantic",
+    "google-genai",
+    "tqdm",
+    "absl-py",
+    "anndata",
+    "numpy",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "ruff",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.ruff]
+line-length = 80
+target-version = "py38"
+

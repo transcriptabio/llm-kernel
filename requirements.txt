@@ -1,0 +1,7 @@
+dspy-ai
+pydantic
+google-generativeai
+tqdm
+absl-py
+anndata
+numpy
