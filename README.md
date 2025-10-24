@@ -11,7 +11,6 @@ A framework for LLM-based pairwise similarity scoring across different data type
 - [Files](#files)
 - [Usage](#usage)
 - [Install](#install)
-- [Run Tests](#run-tests)
 - [Current limitations](#current-limitations)
 - [Citation](#citation)
 
@@ -51,6 +50,8 @@ Input Data → Data Models → Signature Formatting → LLM Analysis → Similar
 
 ## Usage
 
+Read and run examples via `python examples/example.py`. The script relies on the Gemini API so please configure to your use case. The DSPy framework relies on `LiteLLM` so you can swap out common model API providers, see more [in the DSPy docs](https://dspy.ai/learn/programming/language_models/).
+
 ```python
 from analysis.kernel import data_models, scorer
 from analysis.kernel.signatures import kernels
@@ -77,7 +78,7 @@ cd llm-kernel
 make install
 ```
 
-## Run Tests
+### Run Tests
 
 ```bash
 make dev
