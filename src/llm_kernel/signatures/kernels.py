@@ -17,8 +17,9 @@ Typical usage example:
 
 import dspy
 
-from llm_kernel import data_models
-from llm_kernel.signatures import individual, pairwise
+from analysis.kernel import data_models
+from analysis.kernel.signatures import individual
+from analysis.kernel.signatures import pairwise
 
 
 class KernelSignatureBase(dspy.Signature):
@@ -42,10 +43,20 @@ class KernelSignatureBase(dspy.Signature):
         description="Analysis of object Y"
     )
     pairwise_analysis: pairwise.Analysis = dspy.OutputField(
-        description="Pairwise analysis for comparison of object X and object Y"
+        description="Structured comparative analysis between object X and object Y."
+        "Should identify salient points of similarity and difference, and provide "
+        "a concise qualitative assessment of their relationship. "
+        "If the available evidence does not indicate clear alignment or opposition,"
+        'the relationship should be characterized as "inconclusive" or "unrelated".'
     )
     similarity_score: float = dspy.OutputField(
-        description="Similarity score between -1.0 and 1.0"
+        description=(
+            "Continuous similarity metric ranging from -1.0 to 1.0. "
+            "+1.0 represents strong alignment or high similarity; "
+            "0.0 represents little or no meaningful relationship, or inconclusive evidence; "
+            "-1.0 represents strong, systematic opposition or inverse correspondence."
+            "Absence of overlap or unrelated characteristics should yield a score near 0, not a strong negative value."
+        )
     )
 
     @staticmethod
@@ -121,5 +132,5 @@ class TextvsRNAKernelSignature(KernelSignatureBase):
         """Convert data model to format expected by this kernel."""
         if isinstance(data, data_models.Text):
             return data.text
-        if isinstance(data, data_models.RNASeq):
+        elif isinstance(data, data_models.RNASeq):
             return str(list(zip(data.gene_names, data.lfc, data.fdr)))
