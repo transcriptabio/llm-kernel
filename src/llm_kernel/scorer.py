@@ -90,11 +90,7 @@ class KernelScorer:
             return score, response
 
         except Exception as e:
-            x_name = getattr(x, "sample_name", str(x)[:50])
-            y_name = getattr(y, "sample_name", str(y)[:50])
-            logging.error(
-                "Scoring failed for %s vs %s: %s", x_name, y_name, str(e)
-            )
+            logging.error("Scoring failed for %s vs %s: %s", x.id, y.id, str(e))
             return float("nan"), f"Failed: {e!s}"
 
     def score_pairs(self, pairs: list[tuple]) -> typing.Iterator[dict]:
@@ -107,11 +103,9 @@ class KernelScorer:
         def _work(pair):
             x, y = pair
             score, response = self.score_pair(x, y)
-            x_name = getattr(x, "sample_name", str(x)[:50])
-            y_name = getattr(y, "sample_name", str(y)[:50])
             return {
-                "x": x_name,
-                "y": y_name,
+                "x": x.id,
+                "y": y.id,
                 "similarity_score": score,
                 "response": response,
             }
@@ -129,17 +123,15 @@ class KernelScorer:
                         yield fut.result()
                     except Exception as e:
                         x, y = futs[fut]
-                        x_name = getattr(x, "sample_name", str(x)[:50])
-                        y_name = getattr(y, "sample_name", str(y)[:50])
                         logging.error(
                             "Error processing %s vs %s: %s",
-                            x_name,
-                            y_name,
+                            x.id,
+                            y.id,
                             str(e),
                         )
                         yield {
-                            "x": x_name,
-                            "y": y_name,
+                            "x": x.id,
+                            "y": y.id,
                             "similarity_score": float("nan"),
                             "response": f"Error: {e!s}",
                         }
