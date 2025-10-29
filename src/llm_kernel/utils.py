@@ -16,11 +16,11 @@ Typical usage example:
 
 import itertools
 
+from absl import logging
 import anndata
 import numpy as np
-from absl import logging
 
-from llm_kernel import data_models
+from analysis.kernel import data_models
 
 
 def generate_all_pairs(
@@ -47,17 +47,7 @@ def _format_mixed(arr: np.ndarray, precision: int = 4) -> np.ndarray:
     arr = np.asarray(arr, dtype=float)
 
     def _one(x: float) -> str:
-        s = np.format_float_scientific(
-            float(x), precision=precision, unique=False, exp_digits=2
-        )  # e.g., -1.7800e+00
-        mant, _, exp = s.partition("e")
-        try:
-            if int(exp) == 0:
-                # Use general format with significant digits; no trailing zeros/exponent.
-                return format(float(x), f".{precision}g")
-        except ValueError:
-            pass
-        return s
+        return format(float(x), f".{precision}g")
 
     return np.vectorize(_one, otypes=[float])(arr)
 
