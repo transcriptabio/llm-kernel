@@ -2,7 +2,7 @@
 
 A framework for LLM-based pairwise similarity scoring across different data types.
 
-📄 **NeurIPS AI for Science paper:** [*LLM Kernel: a framework for verifiable evaluation of scientific data interpretations*](https://drive.google.com/file/d/1nB51Ljn9gg-aYvIhX6pJn3efvg5XxOjm/view?usp=sharing)
+📄 **NeurIPS AI for Science paper:** [*LLM Kernel: an evaluation framework for open-ended scientific interpretation*](https://drive.google.com/file/d/1nB51Ljn9gg-aYvIhX6pJn3efvg5XxOjm/view?usp=sharing)
 
 ## Table of Contents
 
@@ -109,7 +109,7 @@ The library is built around a `KernelSignatureBase` DSPy module with a single LL
 
 ```bibtex
 @misc{llm-kernel2025,
-  title={LLM Kernel: a framework for verifiable evaluation of scientific data interpretations},
+  title={LLM Kernel: an evaluation framework for open-ended scientific interpretation},
   author={Connell, William and Guin, Drishti and Mellina, Clayton},
   year={2025},
   howpublished={NeurIPS AI for Science Workshop},
