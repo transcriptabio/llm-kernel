@@ -2,7 +2,7 @@
 
 A framework for LLM-based pairwise similarity scoring across different data types.
 
-📄 **NeurIPS AI for Science paper:** [*LLM Kernel: an evaluation framework for open-ended scientific interpretation*](https://drive.google.com/file/d/1nB51Ljn9gg-aYvIhX6pJn3efvg5XxOjm/view?usp=sharing)
+📄 **NeurIPS AI for Science paper:** [*LLM Kernel: an evaluation framework for open-ended scientific interpretation*](https://openreview.net/forum?id=Rq5wDa8Obf)
 
 ## Table of Contents
 
